@@ -35,7 +35,7 @@
             </ul>
             <% if user_signed_in? %>
               <p class="navbar-text navbar-right">ようこそ 
-              <a href="#" class="navbar-link"><%= current_user.name %> さん。</p>
+              <%= current_user.name %> さん。</p>
             <% end %>
           </div>
         </div>
