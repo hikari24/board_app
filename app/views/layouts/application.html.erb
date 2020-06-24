@@ -10,6 +10,42 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed"data-toggle="collapse"data-target="#navbarEexample8">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">けいじばん</a>
+          </div>
+    
+          <div class="collapse navbar-collapse" id="navbarEexample8">
+            <ul class="nav navbar-nav">
+              <% if user_signed_in? %>
+                <li><%= link_to 'スレッド一覧', boards_path %></li>
+                <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+              <% else %>
+                <li><%= link_to 'スレッド一覧', boards_path %></li>
+                <li><%= link_to 'ログイン', new_user_session_path %></li>
+              <% end %>
+            </ul>
+            <% if user_signed_in? %>
+              <p class="navbar-text navbar-right">ようこそ 
+              <a href="#" class="navbar-link"><%= current_user.name %> さん。</p>
+            <% end %>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <div class="container">
+      <%= yield %>
+    </div>
+
+    <footer></footer>
   </body>
 </html>

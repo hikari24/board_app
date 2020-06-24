@@ -1,0 +1,29 @@
+<Div class="row">
+	<div class="col-xs-4 sidebar">
+		<h1>boards#show</h1>
+		<p>Find me in app/views/home/top.html.erb</p>
+	</div>
+
+	<div class="col-xs-8 main-top">
+		<% @board.board_categories.each do |board_category| %>
+		<p><%= board_category.category.name %></p>
+		<% end %>
+		<h4>【<%= @board.title %>】<br>
+			 【<%= @board.user.name %>】
+		</h4>
+
+		<% @board.responses.each do |response| %>
+			<p>【<%= response.id %>】
+			<%= response.user.name %><br>
+			<%= response.content %></p>
+		<% end %>
+
+		<%= form_for [@board, @response] do |f| %>
+			<%= f.label :書き込み欄 %>
+			<%= f.text_area :content %>
+			<%= f.submit "書き込む" %>
+		<% end %>
+
+
+	</div>
+</div>
