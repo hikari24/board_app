@@ -6,23 +6,20 @@
 			</table>
 		<% end %>
 	</div>
-
-	<div class="col-xs-8 ">
-		
-	</div>
-
 	<div class="col-xs-8 main-top">
+		<h4>【<%= @category.name %>】</h4>
+
 		<% @boards.each do |board| %>
 			<table class="table">
-				<tr>
-					<%= link_to board_path(board) do %>
-						<% board.board_categories.each do |board_category| %>
-						【<%= board_category.category.name %>】<% end %>
-					<%= board.title %>
-					[<%= board.user.name %>]
-					<% end %>
+				<%= link_to board_path(board.board_id) do %>
+				<tr><%= board.board.title %>
+					[<%= board.board.user.name %>]
 				</tr>
+				<% end %>
 			</table>
 		<% end %>
+
 	</div>
+
+	
 </div>

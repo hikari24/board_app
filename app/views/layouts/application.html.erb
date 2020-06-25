@@ -27,6 +27,7 @@
             <ul class="nav navbar-nav">
               <% if user_signed_in? %>
                 <li><%= link_to 'スレッド一覧', boards_path %></li>
+                <li><%= link_to 'スレッド作成', new_board_path %></li>
                 <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
               <% else %>
                 <li><%= link_to 'スレッド一覧', boards_path %></li>
@@ -43,17 +44,19 @@
     </header>
 
     <div class="container">
-      <div class="form-group">
         <%= form_tag boards_path, :method => 'get' do %>
-          <p>
-            <%= text_field_tag :search, params[:search], class: "from-control" %>
-            <%= submit_tag "検索", :title => nil %>
-          </p>
+        <div class="row search">
+          <div class="form-group">
+            <%= text_field_tag :search, params[:search], placeholder: "検索キーワード", class: "form-control", style: "width: auto; display: inline-block" %>
+            <%= submit_tag "検索", :title => nil, class: "btn btn-default" %>
+          </div>
+        </div>
         <% end %>
-      </div>
       <%= yield %>
     </div>
 
-    <footer></footer>
+    <footer>
+      <p class="footer">けいじばん</p>
+    </footer>
   </body>
 </html>

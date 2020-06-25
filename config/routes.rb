@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   	resources :responses, only: [:create, :destroy]
   end
 
+  resources :categories, only: [:show]
+
   resources :users, only: [:show]
 
 end
