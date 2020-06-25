@@ -18,8 +18,12 @@ class BoardsController < ApplicationController
 		#if params[category_id]
 		#	@boards = Board.where(category_id: params[category_id])
 		#else
+		if params[:search]
+			@boards = Board.search(params[:search])
+		else
 			@boards = Board.all.order(created_at: :desc)
-		#end
+		end
+		#@boards = Board.includes(:rresponse).where
 	end
 
 	def show
