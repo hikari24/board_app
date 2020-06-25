@@ -2,6 +2,8 @@ class BoardsController < ApplicationController
 	def new
 		@board = Board.new
 		@board.board_categories.new
+		@categories = Category.all
+		@boards = Board.order(created_at: :desc).first(10)
 	end
 
 	def create
@@ -12,14 +14,16 @@ class BoardsController < ApplicationController
 	end
 
 	def index
+		@categories = Category.all
 		#if params[category_id]
 		#	@boards = Board.where(category_id: params[category_id])
 		#else
-			@boards = Board.all
+			@boards = Board.all.order(created_at: :desc)
 		#end
 	end
 
 	def show
+		@categories = Category.all
 		@board = Board.find(params[:id])
 		@response = Response.new
 		@responses = @board.responses

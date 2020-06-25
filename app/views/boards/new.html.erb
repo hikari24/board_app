@@ -1,18 +1,21 @@
 <div class="row">
-	<div class="col-xs-4 sidebar">
-		<h1>boards#new</h1>
-		<p>Find me in app/views/home/top.html.erb</p>
+	<div class="col-xs-3 sidebar">
+		<% @categories.each do |category| %>
+			<table class="table">
+				<tr><%= link_to category.name, boards_path(category_id: category.id) %></tr>
+			</table>
+		<% end %>
 	</div>
 
 	<div class="col-xs-8 main-top">
 		<div class="form-group">
-		<%= form_with model: @board, local: true do |f| %>
-			<%= f.label :スレッド名 %>
-			<%= f.text_field :title %>
-			
-			<%= f.collection_check_boxes :category_ids, Category.all, :id, :name %>
+			<%= form_with model: @board, local: true do |f| %>
+				<%= f.label :スレッド名 %>
+				<%= f.text_field :title, class: "form-control" %>
+				<%= f.label :カテゴリー（複数選択可） %><br>
+				<%= f.collection_check_boxes :category_ids, Category.all, :id, :name %>
 
-			<%= f.submit 'スレッド作成'%>
+				<button class="btn btn-default" type="submit">スレッド作成</button>
 		</div>
 		<% end %>
 
@@ -20,5 +23,20 @@
 	</div>
 	<div class="col-xs-8 main-bottom">
 		<h3>最新のスレッド</h3>
+			<% @boards.each do |board| %>
+				<table class="table">
+					<tr>
+						<%= link_to board_path(board) do %>
+							<% board.board_categories.each do |board_category| %>
+							【<%= board_category.category.name %>】<% end %>
+							<%= board.title %>
+							[<%= board.user.name %>]
+							<%= board.created_at.strftime("%Y/%m/%d") %>
+						<% end %>
+					</tr>
+
+				</table>
+			<% end %>
+			<p><%= link_to 'もっと見る', boards_path %></p>
 	</div>
 </div>

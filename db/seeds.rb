@@ -7,18 +7,34 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
+# Category.create!(
+#  	name: '政治'
+#  	)
+
+# Category.create!(
+#  	name: 'グルメ'
+#  	)
+
+# Category.create!(
+#  	name: '芸能'
+#  	)
+
+# Category.create!(
+#  	name: '旅行'
+#  	)
+
 Category.create!(
- 	name: '政治'
+ 	name: 'エンタメ'
  	)
 
 Category.create!(
- 	name: 'グルメ'
+ 	name: '教育'
  	)
 
 Category.create!(
- 	name: '芸能'
+ 	name: '就職・転職'
  	)
 
 Category.create!(
- 	name: '旅行'
+ 	name: '動物'
  	)

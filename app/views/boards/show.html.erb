@@ -1,27 +1,43 @@
 <Div class="row">
-	<div class="col-xs-4 sidebar">
-		<h1>boards#show</h1>
-		<p>Find me in app/views/home/top.html.erb</p>
+	<div class="col-xs-3 sidebar">
+		<% @categories.each do |category| %>
+			<table class="table">
+				<tr><%= link_to category.name, boards_path(category_id: category.id) %></tr>
+			</table>
+		<% end %>
 	</div>
 
 	<div class="col-xs-8 main-top">
 		<% @board.board_categories.each do |board_category| %>
-		<p><%= board_category.category.name %></p>
+			<span>【<%= board_category.category.name %>】</span>
 		<% end %>
-		<h4>【<%= @board.title %>】<br>
-			 【<%= @board.user.name %>】
-		</h4>
+		<p class="board-title" style="font-size: 20px;">
+			<%= @board.title %>
+			<%= @board.user.name %><br>
+			<%= @board.created_at.strftime("%Y/%m/%d %H:%M:%S") %>
+		</p>
 
-		<% @board.responses.each do |response| %>
-			<p>【<%= response.id %>】
-			<%= response.user.name %><br>
-			<%= response.content %></p>
+		
+
+		<% @responses.each_with_index do |response, i| %>
+			<p>【<%= i+1 %>】
+				名前：
+				<%= link_to user_path(response.user_id) do %>
+				<%= response.user.name %>
+				<% end %>
+
+				<%= response.created_at.strftime("%Y/%m/%d %H:%M:%S") %><br>
+				<%= response.content %>
+			</p>
+			<p>--------------------------------</p>
 		<% end %>
 
 		<%= form_for [@board, @response] do |f| %>
-			<%= f.label :書き込み欄 %>
-			<%= f.text_area :content %>
-			<%= f.submit "書き込む" %>
+			<div class="form-group">
+				<%= f.label :書き込み欄 %><br>
+				<%= f.text_area :content, class: "form-control", placeholder: "コメントを入力してください" %><br>
+				<button class="btn btn-default" type="submit">書き込む</button>
+			</div>
 		<% end %>
 
 
