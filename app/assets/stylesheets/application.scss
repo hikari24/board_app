@@ -32,13 +32,22 @@ header {
 
 body {
 	width: 100%;
-	background-color: grey;
+	padding: 10px;
+	background-color: #c0c0c0;
+}
+
+.login,
+.signup,
+.forget-password {
+	margin: 5% 20%;
+	padding: 20px;
+	background-color: white;
 }
 
 .sidebar {
 	margin: 20px 20px 20px 0;
 	padding: 10px;
-	background-color: yellow;
+	background-color: white;
 }
 
 .main-top {
@@ -47,14 +56,18 @@ body {
 	padding: 10px;
 }
 
-.mypage {
-	background-color: pink;
-	margin: 20px 0;
-}
-
 .main-bottom {
 	background-color: white;
 	margin-bottom: 20px;
+}
+
+.pagination>li>a {
+  border: none;     /*枠線をなくす*/
+  color: #696969;   /*文字の色を変える*/
+}
+
+.pagination>.active>a {     
+  background: #e4e4e4;     /*背景の色を変える*/
 }
 
 footer {

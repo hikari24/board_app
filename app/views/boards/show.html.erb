@@ -1,4 +1,6 @@
-<Div class="row">
+<%= render "search/search_form" %>
+
+<div class="row">
 	<div class="col-xs-3 sidebar">
 		<% @categories.each do |category| %>
 			<table class="table">
@@ -39,6 +41,8 @@
 				<button class="btn btn-default" type="submit">書き込む</button>
 			</div>
 		<% end %>
+
+		<%= paginate @responses %>
 
 
 	</div>

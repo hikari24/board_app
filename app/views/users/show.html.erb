@@ -1,3 +1,5 @@
+<%= render "search/search_form" %>
+
 <div class="row">
 	<div class="col-xs-3 sidebar">
 		<% @categories.each do |category| %>
@@ -7,6 +9,20 @@
 		<% end %>
 	</div>
 	<div class="col-xs-8 mypage">
-		<%= current_user.name %>
+		<h4>マイページ</h4>
+		<p>なまえ：<%= @user.name %></p>
+		<p>自己紹介：<%= @user.introduction %></p>
+		<% if @user.id == current_user.id %>
+			<%= link_to 'プロフィール編集', edit_user_path(@user), class: "btn btn-default" %> 
+		<% end %>
+	</div>
+	<div class="col-xs-8 user_board">
+		<h4>スレッド一覧</h4>
+		<% @boards.each do |board| %>
+			<%= link_to board_path(board) do %>
+				<%= board.title %><br>
+			<% end %>
+		<% end %>
+
 	</div>
 </div>

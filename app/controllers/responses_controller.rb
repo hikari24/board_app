@@ -1,4 +1,6 @@
 class ResponsesController < ApplicationController
+	before_action :authenticate_user!, only: [:create]
+
 	def create
 		@board = Board.find(params[:board_id])
 		@response = @board.responses.new(response_params)

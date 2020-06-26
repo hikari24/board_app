@@ -1,3 +1,6 @@
+
+<%= render "search/search_form" %>
+
 <div class="row">
 	<div class="col-xs-3 sidebar">
 		<% @categories.each do |category| %>
@@ -5,10 +8,6 @@
 				<tr><%= link_to category.name, category_path(category) %></tr>
 			</table>
 		<% end %>
-	</div>
-
-	<div class="col-xs-8 ">
-		
 	</div>
 
 	<div class="col-xs-8 main-top">
@@ -24,5 +23,9 @@
 				</tr>
 			</table>
 		<% end %>
+
+		<div style="text-align: center;">
+			<%= paginate @boards %>
+		</div>
 	</div>
 </div>

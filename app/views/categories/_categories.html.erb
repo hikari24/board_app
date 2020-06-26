@@ -1,0 +1,5 @@
+<% @categories.each do |category| %>
+	<table class="table">
+		<tr><%= link_to category.name, boards_path(category_id: category.id) %></tr>
+	</table>
+<% end %>

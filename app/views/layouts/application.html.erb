@@ -5,6 +5,8 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <script src="https://kit.fontawesome.com/b128df6664.js" crossorigin="anonymous"></script>
+
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -32,6 +34,7 @@
               <% else %>
                 <li><%= link_to 'スレッド一覧', boards_path %></li>
                 <li><%= link_to 'ログイン', new_user_session_path %></li>
+                <li><%= link_to '会員登録', new_user_registration_path %></li>
               <% end %>
             </ul>
             <% if user_signed_in? %>
@@ -44,14 +47,9 @@
     </header>
 
     <div class="container">
-        <%= form_tag boards_path, :method => 'get' do %>
-        <div class="row search">
-          <div class="form-group">
-            <%= text_field_tag :search, params[:search], placeholder: "検索キーワード", class: "form-control", style: "width: auto; display: inline-block" %>
-            <%= submit_tag "検索", :title => nil, class: "btn btn-default" %>
-          </div>
-        </div>
-        <% end %>
+      <div id="flash">
+        <%= render "layouts/flash" %>
+      </div>
       <%= yield %>
     </div>
 

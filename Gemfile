@@ -70,6 +70,7 @@ gem 'devise-i18n'
 gem 'devise-i18n-views'
 gem 'pry-rails'
 gem 'dotenv-rails'
+gem 'ransack'
 
 group :production do
   gem 'mysql2'
