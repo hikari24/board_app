@@ -1,0 +1,9 @@
+<%= search_form_for @q, url: boards_path do |f| %>
+  <div class="row search">
+  	<div class="form-group">
+  		<%= f.search_field :title_or_responses_content_cont, placeholder: "検索キーワード", class: "form-control", style: "width: auto; display: inline-block" %>    
+  		<%= f.submit '検索', class: "btn btn-default" %>
+	</div>
+　　</div>
+<% end %>
+  
