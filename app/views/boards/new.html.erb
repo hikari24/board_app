@@ -9,13 +9,13 @@
 		<% end %>
 	</div>
 
-	<div class="col-xs-8 main-top">
+	<div class="col-xs-8 board-new">
 		<div class="form-group">
 			<%= form_with model: @board, local: true do |f| %>
 				<%= f.label :スレッド名 %>
 				<%= f.text_field :title, class: "form-control" %>
 				<%= f.label :カテゴリー（複数選択可） %><br>
-				<%= f.collection_check_boxes :category_ids, Category.all, :id, :name %>
+				<%= f.collection_check_boxes :category_ids, Category.all, :id, :name %><br>
 
 				<button class="btn btn-default" type="submit">スレッド作成</button>
 		</div>

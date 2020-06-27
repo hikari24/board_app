@@ -10,28 +10,31 @@
 	</div>
 
 	<div class="col-xs-8 main-top">
-		<% @board.board_categories.each do |board_category| %>
-			<span>【<%= board_category.category.name %>】</span>
-		<% end %>
-		<p class="board-title" style="font-size: 20px;">
-			<%= @board.title %>
-			<%= @board.user.name %><br>
-			<%= @board.created_at.strftime("%Y/%m/%d %H:%M:%S") %>
+		<p style="font-size: 20px; color: #043c78">
+			<% @board.board_categories.each do |board_category| %>
+				<span>【<%= board_category.category.name %>】</span>
+			<% end %>
+			<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;<%= @board.title %>
+			&nbsp;&nbsp;[<%= @board.user.name %>]<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;<%= @board.created_at.strftime("%Y/%m/%d %H:%M:%S") %>
 		</p>
 
-		
+		<hr>
 
 		<% @responses.each_with_index do |response, i| %>
-			<p>【<%= i+1 %>】
+			<p style="font-weight: bold;">【<%= i+1 %>】
 				名前：
 				<%= link_to user_path(response.user_id) do %>
 				<%= response.user.name %>
 				<% end %>
 
-				<%= response.created_at.strftime("%Y/%m/%d %H:%M:%S") %><br>
+				<%= response.created_at.strftime("%Y/%m/%d %H:%M:%S") %>
+			</p>
+			<p>
 				<%= response.content %>
 			</p>
-			<p>--------------------------------</p>
+			<hr>
 		<% end %>
 
 		<%= form_for [@board, @response] do |f| %>

@@ -2,6 +2,7 @@
 
 <div class="row">
 	<div class="col-xs-3 sidebar">
+		<h4>カテゴリー一覧</h4>
 		<% @categories.each do |category| %>
 			<table class="table">
 				<tr><%= link_to category.name, category_path(category) %></tr>
@@ -19,7 +20,7 @@
 							【<%= board_category.category.name %>】<% end %>
 							<%= board.title %>
 							[<%= board.user.name %>]
-							<%= board.created_at.strftime("%Y/%m/%d") %>
+							(<%= board.responses.count %>)
 						<% end %>
 					</tr>
 

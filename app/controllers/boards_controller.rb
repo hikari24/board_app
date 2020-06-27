@@ -23,9 +23,13 @@ class BoardsController < ApplicationController
 	end
 
 	def index
-		if params[:search]
-			@boards = Board.search(params[:search]).page(params[:page])
-			@response = Response.search(params[:search])
+		if params[:q]
+			@q = Board.ransack(params[:q])
+			@boards = @q.result
+			@responses = @q.result
+		#if params[:search]
+		#	@boards = Board.search(params[:search]).page(params[:page])
+		#	@response = Response.search(params[:search])
 		else
 			@boards = Board.all.order(created_at: :desc).page(params[:page]).per(20)
 		end

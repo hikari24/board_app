@@ -6,14 +6,8 @@ class Board < ApplicationRecord
 
 	validates :title, presence: true
 
-	def self.search(search)
-		if search
-			Board.where(['title LIKE ?', "%#{search}%"])
-			#Board.includes(:response).where(['title LIKE ? OR content LIKE ?',"%#{search}%", "%#{search}%"]).references(:response)
-		else
-			Board.all
-		end
-	end
-	
+	def self.ransackable_attributes(auth_object = nil)
+    	%w[title]
+  	end
 end
 

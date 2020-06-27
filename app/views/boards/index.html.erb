@@ -19,13 +19,16 @@
 						【<%= board_category.category.name %>】<% end %>
 					<%= board.title %>
 					[<%= board.user.name %>]
+					(<%= board.responses.count %>)
 					<% end %>
 				</tr>
 			</table>
 		<% end %>
 
 		<div style="text-align: center;">
-			<%= paginate @boards %>
+			<%#= paginate @boards %>
+			<%#= paginate @responses %>
+
 		</div>
 	</div>
 </div>

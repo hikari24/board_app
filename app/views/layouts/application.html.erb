@@ -38,8 +38,8 @@
               <% end %>
             </ul>
             <% if user_signed_in? %>
-              <p class="navbar-text navbar-right"><%= link_to user_path(current_user.id) do %> 
-              <%= current_user.name %> さん<% end %></p>
+              <p class="navbar-text navbar-right"><%= link_to user_path(current_user.id) do %><i class="fas fa-user-circle"></i>&nbsp;&nbsp;<%= current_user.name %> さん<% end %>
+              </p>
             <% end %>
           </div>
         </div>

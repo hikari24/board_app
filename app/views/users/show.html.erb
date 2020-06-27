@@ -9,7 +9,7 @@
 		<% end %>
 	</div>
 	<div class="col-xs-8 mypage">
-		<h4>マイページ</h4>
+		<h4>ユーザー情報</h4>
 		<p>なまえ：<%= @user.name %></p>
 		<p>自己紹介：<%= @user.introduction %></p>
 		<% if @user.id == current_user.id %>
@@ -17,10 +17,13 @@
 		<% end %>
 	</div>
 	<div class="col-xs-8 user_board">
-		<h4>スレッド一覧</h4>
+		<h4>ユーザーのスレッド一覧</h4>
 		<% @boards.each do |board| %>
 			<%= link_to board_path(board) do %>
-				<%= board.title %><br>
+				<%= board.title %>
+				(<%= board.responses.count %>)
+
+				<br>
 			<% end %>
 		<% end %>
 
