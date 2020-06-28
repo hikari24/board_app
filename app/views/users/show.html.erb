@@ -1,31 +1,17 @@
-<%= render "boards/search" %>
-
-<div class="row">
-	<div class="col-xs-3 sidebar">
-		<% @categories.each do |category| %>
-			<table class="table">
-				<tr><%= link_to category.name, boards_path(category_id: category.id) %></tr>
-			</table>
+<div class="col-xs-8 main-top">
+	<h4>ユーザー情報</h4>
+	<p>なまえ：<%= @user.name %></p>
+	<p>自己紹介：<%= @user.introduction %></p>
+	<% if @user.id == current_user.id %>
+		<%= link_to 'プロフィール編集', edit_user_path(@user), class: "btn btn-default" %> 
+	<% end %>
+</div>
+<div class="col-xs-8 main-bottom">
+	<h4>ユーザーのスレッド一覧</h4>
+	<% @boards.each do |board| %>
+		<%= link_to board_path(board) do %>
+			<%= board.title %>
+			(<%= board.responses.count %>)<br>
 		<% end %>
-	</div>
-	<div class="col-xs-8 mypage">
-		<h4>ユーザー情報</h4>
-		<p>なまえ：<%= @user.name %></p>
-		<p>自己紹介：<%= @user.introduction %></p>
-		<% if @user.id == current_user.id %>
-			<%= link_to 'プロフィール編集', edit_user_path(@user), class: "btn btn-default" %> 
-		<% end %>
-	</div>
-	<div class="col-xs-8 user_board">
-		<h4>ユーザーのスレッド一覧</h4>
-		<% @boards.each do |board| %>
-			<%= link_to board_path(board) do %>
-				<%= board.title %>
-				(<%= board.responses.count %>)
-
-				<br>
-			<% end %>
-		<% end %>
-
-	</div>
+	<% end %>
 </div>

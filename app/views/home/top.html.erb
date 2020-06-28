@@ -1,32 +1,16 @@
-<%= render "boards/search" %>
-
-<div class="row">
-	<div class="col-xs-3 sidebar">
-		<h4>カテゴリー一覧</h4>
-		<% @categories.each do |category| %>
+<div class="col-xs-8 main-top">
+	<h3>最新のスレッド</h3>
+		<% @boards.each do |board| %>
 			<table class="table">
-				<tr><%= link_to category.name, category_path(category) %></tr>
+				<tr><%= link_to board_path(board) do %>
+					<% board.board_categories.each do |board_category| %>
+					【<%= board_category.category.name %>】<% end %>
+					<%= board.title %>
+					[<%= board.user.name %>]
+					(<%= board.responses.count %>)
+					<% end %>
+				</tr>
 			</table>
 		<% end %>
-	</div>
-
-	<div class="col-xs-8 main-top">
-		<h3>最新のスレッド</h3>
-			<% @boards.each do |board| %>
-				<table class="table">
-					<tr>
-						<%= link_to board_path(board) do %>
-							<% board.board_categories.each do |board_category| %>
-							【<%= board_category.category.name %>】<% end %>
-							<%= board.title %>
-							[<%= board.user.name %>]
-							(<%= board.responses.count %>)
-						<% end %>
-					</tr>
-
-				</table>
-			<% end %>
-			<p><%= link_to 'もっと見る', boards_path %></p>
-	</div>
+	<p><%= link_to 'もっと見る', boards_path %></p>
 </div>
-

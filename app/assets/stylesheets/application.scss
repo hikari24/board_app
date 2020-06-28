@@ -44,8 +44,12 @@ body {
 
 }
 
+.search {
+	margin-left: 10px;
+}
+
 .sidebar {
-	margin: 20px 20px 20px 0;
+	margin: 10px 10px 20px 10px;
 	padding: 10px;
 	background-color: white;
 	border-radius: 5px;
@@ -53,13 +57,16 @@ body {
 
 .main-top {
 	background-color: white;
-	margin: 20px 0;
+	margin: 10px;
 	padding: 10px;
+	border-radius: 5px;
 }
 
 .main-bottom {
 	background-color: white;
-	margin-bottom: 20px;
+	margin: 10px 0 20px 10px;
+	padding: 10px;
+	border-radius: 5px;
 }
 
 .pagination>li>a {

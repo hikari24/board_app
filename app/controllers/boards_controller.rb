@@ -1,10 +1,5 @@
 class BoardsController < ApplicationController
 	before_action :authenticate_user!, only: [:new, :create]
-	before_action :set_category, only: [:new, :index, :show]
-
-	def set_category
-		@categories = Category.all
-	end
 
 	def new
 		@board = Board.new
@@ -25,11 +20,7 @@ class BoardsController < ApplicationController
 	def index
 		if params[:q]
 			@q = Board.ransack(params[:q])
-			@boards = @q.result
-			@responses = @q.result
-		#if params[:search]
-		#	@boards = Board.search(params[:search]).page(params[:page])
-		#	@response = Response.search(params[:search])
+			@boards = @q.result.page(params[:page]).per(20)
 		else
 			@boards = Board.all.order(created_at: :desc).page(params[:page]).per(20)
 		end

@@ -1,52 +1,37 @@
-<%= render "boards/search" %>
-
-<div class="row">
-	<div class="col-xs-3 sidebar">
-		<% @categories.each do |category| %>
-			<table class="table">
-				<tr><%= link_to category.name, category_path(category) %></tr>
-			</table>
+<div class="col-xs-8 main-top">
+	<p style="font-size: 20px; color: #043c78;">
+		<% @board.board_categories.each do |board_category| %>
+			<span>【<%= board_category.category.name %>】</span>
 		<% end %>
-	</div>
-
-	<div class="col-xs-8 main-top">
-		<p style="font-size: 20px; color: #043c78">
-			<% @board.board_categories.each do |board_category| %>
-				<span>【<%= board_category.category.name %>】</span>
-			<% end %>
-			<br>
-			&nbsp;&nbsp;&nbsp;&nbsp;<%= @board.title %>
-			&nbsp;&nbsp;[<%= @board.user.name %>]<br>
-			&nbsp;&nbsp;&nbsp;&nbsp;<%= @board.created_at.strftime("%Y/%m/%d %H:%M:%S") %>
-		</p>
-
-		<hr>
-
-		<% @responses.each_with_index do |response, i| %>
-			<p style="font-weight: bold;">【<%= i+1 %>】
-				名前：
-				<%= link_to user_path(response.user_id) do %>
+		<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;<%= @board.title %>
+		&nbsp;&nbsp;[<%= @board.user.name %>]<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;<%= @board.created_at.strftime("%Y/%m/%d %H:%M:%S") %>
+	</p>
+	<hr>
+	<% @responses.each_with_index do |response, i| %>
+		<p style="font-weight: bold;">【<%= i+1 %>】
+			名前：
+			<%= link_to user_path(response.user_id) do %>
 				<%= response.user.name %>
-				<% end %>
+			<% end %>
+			<%= response.created_at.strftime("%Y/%m/%d %H:%M:%S") %>
+		</p>
+		<p>
+			<%= response.content %>
+		</p>
+		<hr>
+	<% end %>
 
-				<%= response.created_at.strftime("%Y/%m/%d %H:%M:%S") %>
-			</p>
-			<p>
-				<%= response.content %>
-			</p>
-			<hr>
-		<% end %>
+	<%= form_for [@board, @response] do |f| %>
+		<div class="form-group">
+			<%= f.label :書き込み欄 %><br>
+			<%= f.text_area :content, class: "form-control", placeholder: "コメントを入力してください" %><br>
+			<button class="btn btn-default" type="submit">書き込む</button>
+		</div>
+	<% end %>
 
-		<%= form_for [@board, @response] do |f| %>
-			<div class="form-group">
-				<%= f.label :書き込み欄 %><br>
-				<%= f.text_area :content, class: "form-control", placeholder: "コメントを入力してください" %><br>
-				<button class="btn btn-default" type="submit">書き込む</button>
-			</div>
-		<% end %>
-
+	<div style="text-align: center;">
 		<%= paginate @responses %>
-
-
 	</div>
 </div>

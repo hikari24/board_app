@@ -1,33 +1,19 @@
-<%= render "boards/search" %>
-
-<div class="row">
-	<div class="col-xs-3 sidebar">
-		<% @categories.each do |category| %>
-			<table class="table">
-				<tr><%= link_to category.name, category_path(category) %></tr>
-			</table>
-		<% end %>
-	</div>
-
-	<div class="col-xs-8 main-top">
-		<% @boards.each do |board| %>
-			<table class="table">
-				<tr>
-					<%= link_to board_path(board) do %>
-						<% board.board_categories.each do |board_category| %>
+<div class="col-xs-8 main-top">
+	<% @boards.each do |board| %>
+		<table class="table">
+			<tr>
+				<%= link_to board_path(board) do %>
+					<% board.board_categories.each do |board_category| %>
 						【<%= board_category.category.name %>】<% end %>
 					<%= board.title %>
 					[<%= board.user.name %>]
 					(<%= board.responses.count %>)
-					<% end %>
-				</tr>
-			</table>
-		<% end %>
+				<% end %>
+			</tr>
+		</table>
+	<% end %>
 
-		<div style="text-align: center;">
-			<%#= paginate @boards %>
-			<%#= paginate @responses %>
-
-		</div>
+	<div style="text-align: center;">
+		<%= paginate @boards %>
 	</div>
 </div>

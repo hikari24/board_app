@@ -1,44 +1,29 @@
-<%= render "boards/search" %>
+<div class="col-xs-8 main-top">
+	<div class="form-group">
+		<%= form_with model: @board, local: true do |f| %>
+			<%= f.label :スレッド名 %>
+			<%= f.text_field :title, class: "form-control" %>
+			<%= f.label :カテゴリー（複数選択可） %><br>
+			<%= f.collection_check_boxes :category_ids, Category.all, :id, :name %><br>
 
-<div class="row">
-	<div class="col-xs-3 sidebar">
-		<% @categories.each do |category| %>
+			<button class="btn btn-default" type="submit">スレッド作成</button>
+		<% end %>
+	</div>
+</div>
+<div class="col-xs-8 main-bottom">
+	<h3>最新のスレッド</h3>
+		<% @boards.each do |board| %>
 			<table class="table">
-				<tr><%= link_to category.name, category_path(category) %></tr>
+				<tr>
+					<%= link_to board_path(board) do %>
+						<% board.board_categories.each do |board_category| %>
+						【<%= board_category.category.name %>】<% end %>
+						<%= board.title %>
+						[<%= board.user.name %>]
+						<%= board.created_at.strftime("%Y/%m/%d") %>
+					<% end %>
+				</tr>
 			</table>
 		<% end %>
-	</div>
-
-	<div class="col-xs-8 board-new">
-		<div class="form-group">
-			<%= form_with model: @board, local: true do |f| %>
-				<%= f.label :スレッド名 %>
-				<%= f.text_field :title, class: "form-control" %>
-				<%= f.label :カテゴリー（複数選択可） %><br>
-				<%= f.collection_check_boxes :category_ids, Category.all, :id, :name %><br>
-
-				<button class="btn btn-default" type="submit">スレッド作成</button>
-		</div>
-		<% end %>
-
-
-	</div>
-	<div class="col-xs-8 main-bottom">
-		<h3>最新のスレッド</h3>
-			<% @boards.each do |board| %>
-				<table class="table">
-					<tr>
-						<%= link_to board_path(board) do %>
-							<% board.board_categories.each do |board_category| %>
-							【<%= board_category.category.name %>】<% end %>
-							<%= board.title %>
-							[<%= board.user.name %>]
-							<%= board.created_at.strftime("%Y/%m/%d") %>
-						<% end %>
-					</tr>
-
-				</table>
-			<% end %>
-			<p><%= link_to 'もっと見る', boards_path %></p>
-	</div>
+	<p><%= link_to 'もっと見る', boards_path %></p>
 </div>

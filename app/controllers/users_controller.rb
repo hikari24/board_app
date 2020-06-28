@@ -1,11 +1,6 @@
 class UsersController < ApplicationController
-	before_action :set_category, only: [:show, :edit]
 	before_action :authenticate_user!, only: [:show, :edit, :update]
 	before_action :correct_user, only: [:edit, :update]
-
-	def set_category
-		@categories = Category.all
-	end
 
 	def show
 		@user = User.find(params[:id])
