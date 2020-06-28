@@ -1,24 +1,20 @@
-# README
+# けいじばん
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイトURL
+http://18.176.20.51/
 
-Things you may want to cover:
+## サイト概要
 
-* Ruby version
+###機能一覧
+####会員機能
+-新規登録
+-ログイン、ログアウト
+-登録内容の編集
 
-* System dependencies
+####スレッド機能
+-スレッドの閲覧、投稿
+-スレッド投稿時、カテゴリ設定（複数選択可）が可能
+-コメント投稿
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+####検索機能 
+-スレッド及びコメントの単語検索
