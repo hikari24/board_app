@@ -1,0 +1,7 @@
+<div class="col-xs-3 sidebar">
+    <% @categories.each do |category| %>
+        <table class="table">
+            <tr><%= link_to category.name, category_path(category) %></tr>
+        </table>
+    <% end %>
+</div>
