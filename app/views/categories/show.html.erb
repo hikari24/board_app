@@ -6,14 +6,6 @@
     <% end %>
 </div>
 
-<div class="col-xs-3 sidebar">
-    <% @categories.each do |category| %>
-        <table class="table">
-            <tr><%= link_to category.name, category_path(category) %></tr>
-        </table>
-    <% end %>
-</div>
-
 <div class="col-xs-8 main-top">
 	<h4>【<%= @category.name %>】</h4>
 		<% @boards.each do |board| %>
